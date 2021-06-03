@@ -1,0 +1,44 @@
+Methods
+
+string.startWith("test",10)-if at index 10 there is a word "test" starting returns true
+
+subString(0,4)-including 0 excluding 
+subString(0)-given starting index
+
+equalsIgnoreCase()
+
+compareTo()-0 if equal -1 if less 1 if greater
+
+matches("[a-z]+")-only contain letters from a to z (simple)
+matches("a-zA-z")-only contain letters from a to z and A to Z
+
+
+
+charAt()
+
+
+indexOf(char)-first occurrenceof "char"
+indexOf(char,int)-first occurrenceof "char" after "int" index
+
+indexOf(String)-first occurrenceof "char"
+indexOf(String,int)-first occurrenceof "String" after "int" index
+
+
+lastIndexOf()-similar to indexOf but start from end
+
+
+contains(CharSequence)-boolean
+
+
+toLoweCase()
+toUpperCase()
+
+
+
+
+split(" ")-returns an array sepeated by spaces
+split("\\s+ ")-as parameter we can give reg expressions
+
+split("/",2)-the second parameter is the limit of the array
+
+

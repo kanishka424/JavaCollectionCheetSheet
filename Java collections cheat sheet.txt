@@ -1,0 +1,143 @@
+0.Collections
+Collections.min(collection)
+Collections.max(collection)
+//uses compareTo() method
+
+
+
+Collection.sort(collection)
+Collection.sort(collection,comparator)
+
+Collection.reverse(list)
+
+
+Collection.shuffle(collection)
+
+
+Collection.swap(list,i,j)
+//i and j are elemnts
+
+
+
+
+1.List
+void add(int index, E element)	
+boolean add(E e)
+boolean addAll(Collection<? extends E> c)	
+
+E get(int index)
+
+
+
+Object[] toArray()	It is used to return an array containing all of the elements in this list in the correct order.
+<T> T[] toArray(T[] a)	It is used to return an array containing all of the elements in this list in the correct order.	
+
+E get(int index)-It is used to fetch the element from the particular position of the list.
+
+boolean isEmpty()	
+
+int indexOf(Object o)	
+
+boolean remove(Object o)	
+
+int size()	
+
+(i)ArrayList
+
+
+
+(ii)LinkedList
+
+
+
+
+2.HashMap
+void clear()	-It is used to remove all of the mappings from this map
+
+boolean isEmpty()	
+
+Set entrySet()-It is used to return a collection view of the mappings contained in this map.
+getKeY()
+getValue()
+
+
+Set keySet()	-It is used to return a set view of the keys contained in this map.
+
+
+
+V put(Object key, Object value)
+void putAll(Map map)	
+
+
+
+
+
+V remove(Object key)	-It is used to delete an entry for the specified key.
+boolean remove(Object key, Object value)-	It removes the specified values with the associated specified keys from the map
+
+boolean containsKey(Object key)
+
+
+V get(Object key)	
+V getOrDefault(Object key, V defaultValue)-	It returns the value to which the specified key is mapped, or defaultValue if the map contains no mapping for the key.
+.
+
+
+
+V replace(K key, V value)
+boolean replace(K key, V oldValue, V newValue)
+
+
+
+Collection<V> values()	It returns a collection view of the values contained in the map.
+
+
+
+
+
+
+3.Set
+
+new HashSet<obj>();
+
+add(obj)
+remove(obJ)
+
+
+
+
+
+4.Array
+Arrays.asList()
+
+arr[i]-to get value
+arr[i]-to set value
+
+
+
+
+5.Queue
+
+  Queue<Integer> q = new LinkedList<>();
+
+
+ q.add(i);
+q.remove();
+q.peek();
+q.size();
+
+
+
+
+
+6.Stack
+
+Stack<Integer> stk= new Stack<>();  
+
+
+
+empty()			boolean	The method checks the stack is empty or not.
+push(E item)		The method pushes (insert) an element onto the top of the stack.
+pop()			The method removes an element from the top of the stack and returns the same element as the value of that function.
+peek()			The method looks at the top element of the stack without removing it.
+search(Object o)	The method searches the specified object and returns the position of the object.

@@ -1,0 +1,46 @@
+@Override
+public boolean equals(Object obJ){//must be Object otherwise it would be overloading but we need overridin
+if(this==obj){
+return true;
+}
+
+if((obj==null)||(obj.getClass() != this.getClass())){
+return false;
+
+};
+
+
+
+
+String objName=((HeavenlyBody)obj).getName();
+return this.name.equals(objName);
+
+}
+
+
+
+public int hashCode(){
+return this.name.hashCode()+57;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE
+1.objectthat are equal must have same hashcode 
+hashcode decides which bucket to go
+if we override either hashcode() or equals() we have override other
+
+

@@ -1,0 +1,3 @@
+int foundSeat=Collections.binarySearch(seats,requestedSeat,null)
+
+seats-is a List
