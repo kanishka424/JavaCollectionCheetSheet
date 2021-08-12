@@ -1,0 +1,16 @@
+forEach (java 8)
+
+list.forEach(Consumer  interface)
+
+
+map.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
+
+
+
+list.forEach(employee->sout(employee.getName());
+
+
+list.forEach(System.out::println);
+
+
+stream.forEach(printTextInHexConsumer);

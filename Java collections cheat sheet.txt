@@ -28,9 +28,30 @@ boolean addAll(Collection<? extends E> c)
 E get(int index)
 
 
-
+//toArray()
 Object[] toArray()	It is used to return an array containing all of the elements in this list in the correct order.
 <T> T[] toArray(T[] a)	It is used to return an array containing all of the elements in this list in the correct order.	
+
+List<Integer> al = new ArrayList<Integer>();
+        al.add(10);
+        al.add(20);
+        al.add(30);
+        al.add(40);
+  
+        Integer[] arr = new Integer[al.size()];
+        arr = al.toArray(arr);
+read below article
+link-https://www.geeksforgeeks.org/arraylist-array-conversion-java-toarray-methods/
+
+//Note that the there is an array parameter and array return value. The main purpose of passed array is to tell the type of array. The returned array is of same type as passed array. 
+ 
+
+If the passed array has enough space, then elements are stored in this array itself.
+If the passed array doesn’t have enough space, a new array is created with same type and size of given list.
+If the passed array has more space, the array is first filled with list elements, then null values are filled.
+It throws ArrayStoreException if the runtime type of a is not a supertype of the runtime type of every element in this list.
+
+
 
 E get(int index)-It is used to fetch the element from the particular position of the list.
 
@@ -38,25 +59,61 @@ boolean isEmpty()
 
 int indexOf(Object o)	
 
-boolean remove(Object o)	
+boolean remove(Object o)
+boolean remove(index i)
+
+list.sort(Comparator<T> com)
+
+list.forEach(Consumer consum)
+list.forEach(System.out::println);
+
+e.g-map.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
 
 int size()	
 
 (i)ArrayList
 
+ArrayList(Collection<? extends E> c)	->It is used to build an array list that is initialized with the elements of the collection c.
+//using for a Set(Set is a collection)
+List<String> employeeByKey = new ArrayList<>(set);
+// return a set view
+List<String> employeeByKey = new ArrayList<>(map.keySet());
+
+//map.values()-returns a collections view
+List<Employee> employeeById = new ArrayList<>(map.values());
+
+
+
+
+
+//CONVERTING AN ARRAY to A LIST
+
+String[] stringArray = new String[] { "A", "B", "C", "D" }; 
+List stringList = new ArrayList<>(Arrays.asList(stringArray));
+
+ArrayList.set(index,value)-will replace a particular value(is used add() the previous element will only shift and will exist in list)
+
+//after java 9
+ArrayList<String> friends =  new ArrayList<>(List.of("Peter", "Paul"));
+Is perfectly fine assuming you're running at least Java 9.
+
+Prior to Java 9, you need to go for Arrays.asList() instead of List.of():
+
+ArrayList<String> friends =  new ArrayList<>(Arrays.asList("Peter", "Paul"));
 
 
 (ii)LinkedList
 
+remove()-will reove the head not the tail(thats why it works with queue) (  Queue<Integer> q = new LinkedList<>();)
 
 
-
-2.HashMap
+2.(i)HashMap
 void clear()	-It is used to remove all of the mappings from this map
 
 boolean isEmpty()	
 
 Set entrySet()-It is used to return a collection view of the mappings contained in this map.
+ Set<Entry<String, Integer>> set = map.entrySet(); returns type "Entry"
 getKeY()
 getValue()
 
@@ -68,7 +125,7 @@ Set keySet()	-It is used to return a set view of the keys contained in this map.
 V put(Object key, Object value)
 void putAll(Map map)	
 
-
+e.g-map.forEach((k, v) -> System.out.println("Key : " + k + ", Value : " + v));
 
 
 
@@ -91,10 +148,69 @@ boolean replace(K key, V oldValue, V newValue)
 
 Collection<V> values()	It returns a collection view of the values contained in the map.
 
+//sorting hashmap keys
 
 
+List<String> employeeByKey = new ArrayList<>(map.keySet());//***IMPORTANT****ArraylIst constructor Which takes Set
+Collections.sort(employeeByKey);
+And the output is:
+
+[Annie, George, John, Mher]
 
 
+sorting a map by value is an ecxtension of this
+
+//sorting HasMap using TreeMap
+
+
+Using a TreeMap
+****IMPORTANT******As we know, keys in TreeMap are sorted using their natural order. This is a good solution when we want to sort the key-value pairs by their key. So the idea is to push all the data from our HashMap into the TreeMap.
+
+For starters, let's define a HashMap and initialize it with some data:
+
+Map<String, Employee> map = new HashMap<>();
+
+Employee employee1 = new Employee(1L, "Mher");
+map.put(employee1.getName(), employee1);
+Employee employee2 = new Employee(22L, "Annie");
+map.put(employee2.getName(), employee2);
+Employee employee3 = new Employee(8L, "John");
+map.put(employee3.getName(), employee3);
+Employee employee4 = new Employee(2L, "George");
+map.put(employee4.getName(), employee4);
+For the Employee class, note that we've implemented Comparable:
+
+public class Employee implements Comparable<Employee> {
+
+    private Long id;
+    private String name;
+
+    // constructor, getters, setters
+
+    // override equals and hashCode
+    @Override
+    public int compareTo(Employee employee) {
+        return (int)(this.id - employee.getId());
+    }
+}
+Next, we store the entries in the TreeMap by using its constructor:
+
+TreeMap<String, Employee> sorted = new TreeMap<>(map);//constructor passing existing map
+Or, the putAll method to copy the data:
+
+TreeMap<String, Employee> sorted = new TreeMap<>();
+sorted.putAll(map);//how to copy all reference from a Map to TreeMap
+And that's it! To make sure our map entries are sorted by key, let's print them out:
+
+Annie=Employee{id=22, name='Annie'}
+George=Employee{id=2, name='George'}
+John=Employee{id=8, name='John'}
+Mher=Employee{id=1, name='Mher'}
+As we see, the keys are sorted in natural order.
+
+
+2(ii) 
+Link-https://www.geeksforgeeks.org/treemap-in-java/
 
 3.Set
 
@@ -103,6 +219,102 @@ new HashSet<obj>();
 add(obj)
 remove(obJ)
 
+for HashSet in JAva-https://www.geeksforgeeks.org/hashset-in-java/
+
+
+Constructor 
+1.HashSet()
+Constructs a new, empty set; the backing HashMap instance has default initial capacity (16) and load factor (0.75).
+2.HashSet(Collection<? extends E> c)
+Constructs a new set containing the elements in the specified collection.
+3.HashSet(int initialCapacity)
+Constructs a new, empty set; the backing HashMap instance has the specified initial capacity and default load factor (0.75).
+4.HashSet(int initialCapacity, float loadFactor)
+Constructs a new, empty set; the backing HashMap instance has the specified initial capacity and the specified load factor
+
+example for 1
+
+ public static void main(String[] args)
+    {
+        
+        // adding elements to ArrayList object
+        ArrayList<String> gfg = new ArrayList<>();
+         
+  
+        gfg.add("data structure");
+        gfg.add("competitve programming");
+        gfg.add("Interviews");
+        gfg.add("FANG");
+        gfg.add("FANG");
+  
+        // pass ArrayList object into the HashSet object
+        // constructor
+        HashSet<String> hashSet = new HashSet<>(gfg);
+  
+        // printing every element in Set
+  
+        for (String value : hashSet) {
+            System.out.println(value);
+        }
+
+
+Output
+FANG
+data structure
+competitve programming
+Interviews
+
+3(ii)
+TreeSet
+link-https://www.javatpoint.com/java-treeset
+Java TreeSet class implements the Set interface that uses a tree for storage. It inherits AbstractSet class and implements the NavigableSet interface.
+Let's see a TreeSet example where we are adding books to set and printing all the books. The elements in TreeSet must be of a Comparable type. String and Wrapper classes are Comparable by default. To add user-defined objects in TreeSet, you need to implement the Comparable interface.
+
+import java.util.*;  
+class Book implements Comparable<Book>{  
+int id;  
+String name,author,publisher;  
+int quantity;  
+public Book(int id, String name, String author, String publisher, int quantity) {  
+    this.id = id;  
+    this.name = name;  
+    this.author = author;  
+    this.publisher = publisher;  
+    this.quantity = quantity;  
+}  
+public int compareTo(Book b) {  
+    if(id>b.id){  
+        return 1;  
+    }else if(id<b.id){  
+        return -1;  
+    }else{  
+    return 0;  
+    }  
+}  
+}  
+public class TreeSetExample {  
+public static void main(String[] args) {  
+    Set<Book> set=new TreeSet<Book>();  
+    //Creating Books  
+    Book b1=new Book(121,"Let us C","Yashwant Kanetkar","BPB",8);  
+    Book b2=new Book(233,"Operating System","Galvin","Wiley",6);  
+    Book b3=new Book(101,"Data Communications & Networking","Forouzan","Mc Graw Hill",4);  
+    //Adding Books to TreeSet  
+    set.add(b1);  
+    set.add(b2);  
+    set.add(b3);  
+    //Traversing TreeSet  
+    for(Book b:set){  
+    System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);  
+    }  
+}  
+}  
+Output:
+
+101 Data Communications & Networking Forouzan Mc Graw Hill 4
+121 Let us C Yashwant Kanetkar BPB 8
+233 Operating System Galvin Wiley 6
+
 
 
 
@@ -110,11 +322,53 @@ remove(obJ)
 4.Array
 Arrays.asList()
 
+
+// creating Arrays of String type
+            String a[]
+                = new String[] { "A", "B", "C", "D" };
+ 
+            // getting the list view of Array
+            List<String> list = Arrays.asList(a);
+ 
+
+List<String> bingoList=Arrays.asList("a10","b23"
+		"C13","R45"
+	);
+
+
+
+
 arr[i]-to get value
 arr[i]-to set value
 
 
+copyOf()
+Arrays.copyOf(array,new array size)
 
+
+//how  to convert ArrayList to Array
+//using toArray()
+List<Integer> al = new ArrayList<Integer>();
+        al.add(10);
+        al.add(20);
+        al.add(30);
+        al.add(40);
+  
+        Integer[] arr = new Integer[al.size()];
+        arr = al.toArray(arr);//passing "arr" is a must
+	link-https://www.geeksforgeeks.org/arraylist-array-conversion-java-toarray-methods/
+
+//using streams
+List<Integer> al = new ArrayList<Integer>();
+  al.add(10);
+        al.add(20);
+        al.add(30);
+        al.add(40);
+int[] arr = al.stream().mapToInt(i -> i).toArray();
+
+
+
+ 
 
 5.Queue
 
@@ -122,9 +376,10 @@ arr[i]-to set value
 
 
  q.add(i);
-q.remove();
+q.remove(); and q.poll(); (difference-both remove head but if the queue is empty poll would return null and remove() would throw an exception)
 q.peek();
 q.size();
+q.cler()-clear all elements in queue
 
 
 
@@ -141,3 +396,26 @@ push(E item)		The method pushes (insert) an element onto the top of the stack.
 pop()			The method removes an element from the top of the stack and returns the same element as the value of that function.
 peek()			The method looks at the top element of the stack without removing it.
 search(Object o)	The method searches the specified object and returns the position of the object.
+
+
+
+
+
+convert Number to String
+
+//1st way
+int i=10;  
+String s=String.valueOf(i);//Now it will return "10"  
+
+//2nd way
+int i=10;  
+String s=Integer.toString(i);//Now it will return "10"  
+
+
+//3rd way
+
+int i=200;  
+String s=String.format("%d",i);
+
+
+

@@ -13,8 +13,10 @@ matches("[a-z]+")-only contain letters from a to z (simple)
 matches("a-zA-z")-only contain letters from a to z and A to Z
 
 
-
 charAt()
+let str = "HELLO WORLD";
+str.charAt(0)  
+char[] ch=s1.toCharArray();  
 
 
 indexOf(char)-first occurrenceof "char"
